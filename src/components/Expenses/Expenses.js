@@ -12,12 +12,20 @@ const Expenses = (props) => {
         setFilteredYear(selectedYear);
     }
 
+    // filter the list of items based on the selected year and return a new filtered array
+    const filteredExpenses = props.items.filter(expense => {
+        return expense.date.getFullYear().toString() === filteredYear;
+    });
+
     return (
         <div>
             <Card className="expenses">
                 {/* Passing down handler to grab the selected year and also passing down the selected year to the filter so it can be correctly set based on state */}
                 <ExpensesFilter onChangeFilter={filterChangeHandler} selectedYear={filteredYear} />
-                {props.items.map((expense) => 
+                {/* If filtered expenses are 0, then return error message */}
+                {filteredExpenses.length === 0 && <p className="filtered-error">No expenses found</p>}
+                {/* If filtered expenses exist, return the mapped list */}
+                {filteredExpenses.length > 0 && filteredExpenses.map((expense) => 
                     // whem mapping out components, it's always best practice to add in a unique key to the mapped element
                     <ExpenseItem 
                         title={expense.title} 
