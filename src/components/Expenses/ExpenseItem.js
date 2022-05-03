@@ -6,13 +6,15 @@ import Card from '../UI/Card';
 // this is a presentation or dumb component because it only outputs data and does not manage state
 const ExpenseItem = (props) => {
     return (
-        <Card className="expense-item">
-            <ExpenseDate date={props.date}/>
-            <div className="expense-item__description">
-                <h2>{props.title}</h2>
-                <div className="expense-item__price">${props.amount}</div>
-            </div>
-        </Card>
+        <li>
+            <Card className="expense-item">
+                <ExpenseDate date={props.date}/>
+                <div className="expense-item__description">
+                    <h2>{props.title}</h2>
+                    <div className="expense-item__price">${props.amount}</div>
+                </div>
+            </Card>
+        </li>
     );
 }
 
